@@ -25,11 +25,11 @@ with open('./assets/cars.json') as cars:
     data.append(request.get_json())
     with open('./assets/cars.json', "w") as json_file:
         json.dump(data, json_file, indent=4)
-    return f'Book id {len(data)} is created'
+    return f'Car id {len(data)} is created'
 
   @app.route("/api/cars/delete/<int:id>", methods=['GET','DELETE'])
   def deleteCarsByID(id):
       del data[id]
       with open('./assets/cars.json', "w") as json_file:
         json.dump(data, json_file, indent=4)
-        return 'Book deleted'
+        return f'Car id {id} deleted'
