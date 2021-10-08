@@ -1,15 +1,18 @@
-from flask import Flask
-
+from flask import Flask, jsonify
+import json
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
+with open('./assets/cars.json') as cars:
+  data = json.load(cars)
+
+  @app.route("/")
+  def hello_world():
     return "<p>Hello, World!</p>"
+  
+  @app.route("/api/cars")
+  def getCars():
+        return jsonify(data)
 
-@app.route("/api/cars")
-def getCars():
-    return "<p>Hello, cars!</p>"
-
-@app.route("/api/cars/<id>")
-def getCarsByID(id):
+  @app.route("/api/cars/<id>")
+  def getCarsByID(id):
     return "<p>Hello, cars id!</p>"
