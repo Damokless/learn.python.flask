@@ -13,6 +13,9 @@ with open('./assets/cars.json') as cars:
   def getCars():
         return jsonify(data)
 
-  @app.route("/api/cars/<id>")
+  @app.route("/api/cars/id/<int:id>")
   def getCarsByID(id):
-    return "<p>Hello, cars id!</p>"
+      if id:
+          return data[id]
+      else:
+          return "<p>No car with this id</p>"
