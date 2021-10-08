@@ -1,6 +1,8 @@
 from os import name
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import json
+
+from flask.wrappers import Request
 app = Flask(__name__)
 
 with open('./assets/cars.json') as cars:
@@ -17,6 +19,13 @@ with open('./assets/cars.json') as cars:
   @app.route("/api/cars/id/<int:id>", methods=['GET'])
   def getCarsByID(id):
     return data[id]
+
+  @app.route("/api/cars/add", methods=['GET','POST'])
+  def addCar():
+    data.append(request.get_json())
+    with open('./assets/cars.json', "w") as json_file:
+        json.dump(data, json_file, indent=4)
+    return f'Book id {len(data)} is created'
 
   @app.route("/api/cars/delete/<int:id>", methods=['GET','DELETE'])
   def deleteCarsByID(id):
