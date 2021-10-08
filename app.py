@@ -13,7 +13,3 @@ def getCars():
 @app.route("/api/cars/<id>")
 def getCarsByID(id):
     return "<p>Hello, cars id!</p>"
-
-@app.route("/api/order")
-def orders():
-    return "<p>Hello, orders!</p>"
