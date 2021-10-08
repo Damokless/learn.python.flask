@@ -1,5 +1,4 @@
 from flask import Flask
-import os
 
 app = Flask(__name__)
 
@@ -7,6 +6,14 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/cars")
+@app.route("/api/cars")
 def getCars():
-    return "<p>all cars</p>"
+    return "<p>Hello, cars!</p>"
+
+@app.route("/api/cars/<id>")
+def getCarsByID(id):
+    return "<p>Hello, cars id!</p>"
+
+@app.route("/api/order")
+def orders():
+    return "<p>Hello, orders!</p>"
